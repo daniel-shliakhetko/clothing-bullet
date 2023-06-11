@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export const FrontPage = () => {
-  return (
-    <div>FrontPage</div>
-  )
-}
+  return <div>FrontPage</div>;
+};
