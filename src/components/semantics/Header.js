@@ -18,6 +18,7 @@ export const Header = () => {
 
   const [isMenuShown, setIsMenuShown] = useState(true);
   const [width, setWidth] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useLayoutEffect(() => {
     setWidth(headerRef.current.clientWidth);
@@ -38,33 +39,41 @@ export const Header = () => {
 
   return (
     <header
+      onMouseEnter={()=>{setIsHovered(true)}}
+      onMouseLeave={()=>{setIsHovered(false)}}
       ref={headerRef}
-      className="Header pt-2 pb-3 px-8 relative flex justify-between 2xl:rounded-bl-lg rounded-none bg-indigo-500"
+      className={
+        "Header pt-2 pb-3 px-8 relative flex justify-between " +
+        {
+          /*2xl:rounded-bl-lg*/
+        } +
+        " rounded-none bg-indigo-500"
+      }
     >
       <button
-        className="h-8 mt-1 z-20 duration-200 hover:"
+        className="h-8 mt-1 z-20"
         onClick={() => {
           navigate("/");
         }}
       >
         <FontAwesomeIcon
-          className="text-indigo-100 h-full"
+          className="text-indigo-100 h-full duration-200 hover:scale-110 hover:text-indigo-200"
           icon={faHatCowboySide}
         />
       </button>
       <nav
         className={
-          "Navigation w-full md:ml-8 -ml-10 md:mt-1 mt-14 duration-500" +
+          "Navigation w-full md:ml-8 -ml-4 duration-500" +
           (width < 768 ? " z-0" : " z-20") +
-          (width < 768 && isMenuShown ? " -mt-10 opacity-0" : "")
+          (width < 768 && isMenuShown ? " -mt-10 opacity-0" : " md:mt-2 mt-14")
         }
       >
-        <ul className="NavigationList w-full flex md:flex-row flex-col md:space-x-8">
+        <ul className="NavigationList w-full flex md:flex-row flex-col pb-2 md:space-x-8">
           {menu.map((item, i) => (
             <li
               key={i}
               title={item.title}
-              className="NavigationItem font-semibold lowercase text-indigo-100"
+              className="NavigationItem font-semibold lowercase text-indigo-100 duration-200 hover:scale-110 md:translate-x-0 -translate-x-4 hover:translate-x-0 hover:text-indigo-200"
             >
               <Link to={item.slug}>{item.title}</Link>
             </li>
@@ -73,13 +82,13 @@ export const Header = () => {
       </nav>
       <div className="flex space-x-4 z-20">
         <button
-          className="w-10 h-10 rounded flex justify-center items-center bg-indigo-100"
+          className="w-10 h-10 mb-1 rounded flex justify-center items-center bg-indigo-100 duration-200 hover:scale-105 hover:bg-indiogo-200"
           onClick={() => {
             navigate("/cart");
           }}
         >
           <FontAwesomeIcon
-            className="text-indigo-500 h-full h-3/4"
+            className="text-indigo-500 h-3/4 duration-200"
             icon={faCartShopping}
           />
         </button>
@@ -95,13 +104,14 @@ export const Header = () => {
           />
         </button>
       </div>
-      <div className="absolute top-0 left-0 h-14 w-full bg-indigo-500 z-10"></div>
-      <div className="Decorations w-full h-fit absolute -bottom-2 right-0 flex justify-end">
-        <div className="w-1/6 h-2 rounded-b-lg bg-indigo-500"></div>
-        <div className="-mt-1 w-1/12 h-2 rounded-t-lg lg:block hidden bg-indigo-100"></div>
-        <div className="w-1/12 h-2 rounded-b-lg lg:block hidden bg-indigo-500"></div>
-        <div className="-mt-1 w-1/6 h-2 rounded-t-lg bg-indigo-100"></div>
-        <div className="w-1/4 h-2 2xl:rounded-b-lg rounded-bl-lg bg-indigo-500"></div>
+      <div className="absolute top-0 left-0 h-10 w-full bg-indigo-500 z-10"></div>
+    <div className={"Decorations w-full h-6 absolute -bottom-5 right-0 flex justify-end duration-200 "+{/*(isHovered ? " scale-y-110" : "")*/}}>
+        <div className={"w-1/2 lg:w-1/4 rounded-tr-lg bg-indigo-100 duration-200"+(isHovered ? " h-3 -mt-2" : " h-2 -mt-1")}></div>
+        <div className={"w-1/6 rounded-b-lg bg-indigo-500 duration-200"+(isHovered ? " h-3" : " h-2")}></div>
+        <div className={"w-1/12 rounded-t-lg lg:block hidden bg-indigo-100 duration-200"+(isHovered ? " h-3 -mt-2" : " h-2 -mt-1")}></div>
+        <div className={"w-1/12 rounded-b-lg lg:block hidden bg-indigo-500 duration-200"+(isHovered ? " h-3" : " h-2")}></div>
+        <div className={"w-1/6 rounded-t-lg bg-indigo-100 duration-200"+(isHovered ? " h-3 -mt-2" : " h-2 -mt-1")}></div>
+        <div className={"w-1/4 2xl:rounded-bl-lg rounded-bl-lg bg-indigo-500 duration-200 duration-200"+(isHovered ? " h-3" : " h-2")}></div>
       </div>
     </header>
   );
