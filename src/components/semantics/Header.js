@@ -22,8 +22,7 @@ export const Header = () => {
 
   useLayoutEffect(() => {
     setWidth(headerRef.current.clientWidth);
-    console.log(width);
-  }, [width]);
+  }, []);
 
   useEffect(() => {
     function handleWindowResize() {
