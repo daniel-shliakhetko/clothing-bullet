@@ -18,7 +18,7 @@ const HoverableHeading = (props) => {
                 style={{ fontSize: props.fontSize || "1em" }}
                 className={
                   (props.className || "") +
-                  " hover:text-amber-500 hover:-translate-y-1 duration-300 inline-block " + (props.colorClassName || "")
+                  " hover:text-amber-500 hover:-translate-y-1 duration-300 inline-block z-40 " + (props.colorClassName || "")
                 }
               >
                 {char === " " ? " " : char}
@@ -31,8 +31,7 @@ const HoverableHeading = (props) => {
 
         //props.title.split('').map((char, i)=>(<span key={i} className={"hover:text-amber-500 hover:-translate-y-1 duration-300" +(i%7===1 ? " text-emerald-500" : i%5===0 ? " text-red-600" : "")}>{char}</span>))
       }
-    <span className={(props.colorClassName || "") +" md:hidden inline-block"} style={{ fontSize: props.fontSize || "1em" }}>{props.title}</span>
-
+    <span className={(props.colorClassName || "") +" md:hidden inline-block z-40"} style={{ fontSize: props.fontSize || "1em" }}>{props.title}</span>
     </div>
   );
 };

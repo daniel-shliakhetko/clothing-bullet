@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect } from "react";
-import store from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../store/productSlice";
 import { getProducts } from "../database/firebase";

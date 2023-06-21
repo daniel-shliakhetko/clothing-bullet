@@ -42,11 +42,7 @@ export const Header = () => {
       onMouseLeave={()=>{setIsHovered(false)}}
       ref={headerRef}
       className={
-        "Header pt-2 pb-3 px-8 relative flex justify-between " +
-        {
-          /*2xl:rounded-bl-lg*/
-        } +
-        " rounded-none bg-indigo-500"
+        "Header pt-2 pb-3 px-8 relative flex justify-between rounded-none bg-indigo-500"
       }
     >
       <button
@@ -103,14 +99,14 @@ export const Header = () => {
           />
         </button>
       </div>
-      <div className="absolute top-0 left-0 h-10 w-full bg-indigo-500 z-10"></div>
-    <div className={"Decorations w-full h-6 absolute -bottom-5 right-0 flex justify-end duration-200 "+{/*(isHovered ? " scale-y-110" : "")*/}}>
-        <div className={"w-1/2 lg:w-1/4 rounded-tr-lg bg-indigo-100 duration-200"+(isHovered ? " h-3 -mt-2" : " h-2 -mt-1")}></div>
-        <div className={"w-1/6 rounded-b-lg bg-indigo-500 duration-200"+(isHovered ? " h-3" : " h-2")}></div>
-        <div className={"w-1/12 rounded-t-lg lg:block hidden bg-indigo-100 duration-200"+(isHovered ? " h-3 -mt-2" : " h-2 -mt-1")}></div>
-        <div className={"w-1/12 rounded-b-lg lg:block hidden bg-indigo-500 duration-200"+(isHovered ? " h-3" : " h-2")}></div>
-        <div className={"w-1/6 rounded-t-lg bg-indigo-100 duration-200"+(isHovered ? " h-3 -mt-2" : " h-2 -mt-1")}></div>
-        <div className={"w-1/4 2xl:rounded-bl-lg rounded-bl-lg bg-indigo-500 duration-200 duration-200"+(isHovered ? " h-3" : " h-2")}></div>
+      <div className="absolute top-0 left-0 h-10 w-full bg-indigo-500"></div>
+    <div className={"Decorations w-full h-6 absolute -bottom-5 right-0 flex justify-end duration-200"}>
+        <div className={"w-1/2 lg:w-1/4 rounded-tr-lg bg-indigo-100 duration-200 z-0"+(isHovered ? " h-3 -mt-2" : " h-2 -mt-1")}></div>
+        <div className={"w-1/6 rounded-b-lg bg-indigo-500 duration-200 z-10"+(isHovered ? " h-3" : " h-2")}></div>
+        <div className={"w-1/12 rounded-t-lg lg:block hidden bg-indigo-100 duration-200 z-0"+(isHovered ? " h-3 -mt-2" : " h-2 -mt-1")}></div>
+        <div className={"w-1/12 rounded-b-lg lg:block hidden bg-indigo-500 duration-200 z-10"+(isHovered ? " h-3" : " h-2")}></div>
+        <div className={"w-1/6 rounded-t-lg bg-indigo-100 duration-200 z-0"+(isHovered ? " h-3 -mt-2" : " h-2 -mt-1")}></div>
+        <div className={"w-1/4 2xl:rounded-bl-lg rounded-bl-lg bg-indigo-500 duration-200 duration-200 z-10"+(isHovered ? " h-3" : " h-2")}></div>
       </div>
     </header>
   );
