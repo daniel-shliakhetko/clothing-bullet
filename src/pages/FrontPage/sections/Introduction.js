@@ -16,7 +16,7 @@ export const Introduction = () => {
         className={"hover:text-indigo-400"}
       />
       <div className="Decorations top-0 left-0 w-full h-full absolute overflow-none z-30">
-        <ul class="circles">
+        <ul className="circles">
           <li></li>
           <li></li>
           <li></li>
