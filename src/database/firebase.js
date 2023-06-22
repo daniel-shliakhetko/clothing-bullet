@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
@@ -16,7 +16,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-const productsRef = collection(db, "products");
+const PRODUCTS = "products"
+
+const productsRef = collection(db, PRODUCTS);
 
 export const getProducts = async () => {
   const productsSnap = await getDocs(productsRef);
@@ -28,6 +30,12 @@ export const getProducts = async () => {
   });
   return productList;
 };
+
+export const getProduct = async (id) => {
+  const productRef = doc(db, PRODUCTS, id);
+  const productSnap = await getDoc(productRef);
+  return productSnap.data();
+}
 
 export const getImage = async (storageLocation) => {
   const gsRef = ref(storage, storageLocation);
