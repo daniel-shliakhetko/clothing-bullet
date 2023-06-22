@@ -22,7 +22,9 @@ export const getProducts = async () => {
   const productsSnap = await getDocs(productsRef);
   const productList = [];
   productsSnap.forEach((doc) => {
-    productList.push(doc.data());
+    const product = doc.data();
+    product.id = doc.id;
+    productList.push(product);
   });
   return productList;
 };
