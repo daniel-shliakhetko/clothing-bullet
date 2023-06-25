@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Introduction } from "./sections/Introduction";
 import ProductList from "../../components/lists/ProductList";
 import { useProducts } from "../../contexts/ProductsContext";
@@ -6,6 +6,8 @@ import HoverableHeading from "../../components/headings/HoverableHeading";
 
 export const FrontPage = () => {
   const products = useProducts();
+
+  useEffect(()=>{console.log(products)},[products])
 
   return (
     <>

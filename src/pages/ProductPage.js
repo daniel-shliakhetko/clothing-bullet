@@ -2,10 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { getImage, getProduct } from "../database/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCartArrowDown, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import {
+  addProductToCart,
+  removeProductFromCart,
+  saveCartToLocalStorage,
+} from "../store/cartSlice";
+import { useCart } from "../contexts/ProductsContext";
 
 export const ProductPage = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const cart = useCart();
 
   const [product, setProduct] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -15,6 +25,7 @@ export const ProductPage = () => {
       const currentProduct = await getProduct(id);
       if (!currentProduct) setProduct("Redirect");
       else {
+        currentProduct.id = id;
         setProduct(currentProduct);
         const image = await getImage(currentProduct.thumbnail);
         setImageUrl(image);
@@ -74,12 +85,32 @@ export const ProductPage = () => {
               >
                 Buy
               </button>
-              <button
-                className="w-12 h-12 bg-indigo-300 rounded-lg text-indigo-600"
-                onClick={() => {}}
-              >
-                <FontAwesomeIcon className="mt-1 h-6" icon={faCartPlus} />
-              </button>
+              {cart.some((product) => product.id === id) ? (
+                <button
+                  className="w-12 h-12 bg-red-600 rounded-lg text-indigo-100"
+                  onClick={() => {
+                    dispatch(removeProductFromCart(product));
+                    saveCartToLocalStorage(
+                      cart.filter((item) => item.id !== product.id)
+                    );
+                  }}
+                >
+                  <FontAwesomeIcon
+                    className="mt-1 h-6"
+                    icon={faCartArrowDown}
+                  />
+                </button>
+              ) : (
+                <button
+                  className="w-12 h-12 bg-indigo-300 rounded-lg text-indigo-600"
+                  onClick={() => {
+                    dispatch(addProductToCart(product));
+                    saveCartToLocalStorage([...cart, product]);
+                  }}
+                >
+                  <FontAwesomeIcon className="mt-1 h-6" icon={faCartPlus} />
+                </button>
+              )}
             </div>
           </>
         ) : null}

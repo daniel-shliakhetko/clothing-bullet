@@ -5,17 +5,42 @@ export const cartSlice = createSlice({
   initialState: [],
   reducers: {
     setCart: (state, action) => {
-      state = action.payload;
+      state = [...action.payload];
+      return state;
     },
     addProductToCart: (state, action) => {
-      if(state.some((obj) => obj === action.payload)) return;
-      state = state.push(action.payload);
+      if (state.some((obj) => obj.id === action.payload.id)) return state;
+      return void(state.push(action.payload));
     },
     removeProductFromCart: (state, action) => {
-      state = state.filter((obj) => obj !== action.payload);
-    }
+      return state.filter((obj) => obj.id !== action.payload.id);
+    },
   },
 });
 
-export const {setCart, addProductToCart, removeProductFromCart} = cartSlice.actions;
+const CARTKEY = "CART";
+
+export const saveCartToLocalStorage = async (state) => {
+  try {
+    const serialisedState = JSON.stringify(state);
+    localStorage.setItem(CARTKEY, serialisedState);
+    console.log("SAVED", serialisedState);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getCartFromLocalStorage = async () => {
+  try {
+    const serialisedState = localStorage.getItem(CARTKEY);
+    if (serialisedState === null) return null;
+    console.log("LOADED", serialisedState);
+    return await JSON.parse(serialisedState);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const { setCart, addProductToCart, removeProductFromCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;
