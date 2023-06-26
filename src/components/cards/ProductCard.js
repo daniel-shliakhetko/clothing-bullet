@@ -17,17 +17,28 @@ const ProductCard = (props) => {
     [product, thumbnail]
   );
 
-  return (
+  return product ? (
     <Link to={"/products/" + id}>
       <div
         className={
-          "w-72 h-96 flex flex-col justify-center items-center p-8 rounded-lg font-medium space-y-2" +
+          "w-72 h-96 flex flex-col justify-center items-center p-8 rounded-lg font-medium space-y-2 duration-300 hover:scale-105 ease-[cubic-bezier(0.000, 1.125, 0.530, -0.600)]" +
           (props.dark ? " bg-indigo-100" : " bg-indigo-400")
         }
       >
         {imageUrl ? (
-          <img className="h-56 object-contain" src={imageUrl} alt={title} />
-        ) : null}
+          <img
+            className="h-56 object-contain rounded-md"
+            src={imageUrl}
+            alt={title}
+          />
+        ) : (
+          <div
+            className={
+              "h-56 w-44 rounded-md animate-pulse " +
+              (!props.dark ? "bg-indigo-100" : "bg-indigo-300")
+            }
+          />
+        )}
         <span
           className={
             "Title text-center text-xl" +
@@ -88,6 +99,32 @@ const ProductCard = (props) => {
         )}
       </div>
     </Link>
+  ) : (
+    <div
+      className={
+        "w-72 h-96 flex flex-col justify-center items-center p-8 rounded-lg font-medium space-y-2" +
+        (props.dark ? " bg-indigo-100" : " bg-indigo-400")
+      }
+    >
+      <div
+        className={
+          "h-56 w-44 rounded-md animate-pulse " +
+          (!props.dark ? "bg-indigo-100" : "bg-indigo-300")
+        }
+      />
+      <div
+        className={
+          "h-10 w-full rounded-md animate-pulse " +
+          (!props.dark ? "bg-indigo-100" : "bg-indigo-300")
+        }
+      />
+      <div
+        className={
+          "h-8 w-2/3 rounded-md animate-pulse " +
+          (!props.dark ? "bg-indigo-100" : "bg-indigo-300")
+        }
+      />
+    </div>
   );
 };
 

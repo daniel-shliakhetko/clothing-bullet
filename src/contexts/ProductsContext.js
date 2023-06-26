@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../store/productSlice";
 import { getProducts } from "../database/firebase";
-import { addProductToCart, getCartFromLocalStorage, setCart } from "../store/cartSlice";
+import { getCartFromLocalStorage, setCart } from "../store/cartSlice";
 
 const productsContext = createContext();
 
