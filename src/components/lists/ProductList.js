@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ProductCard from "../cards/ProductCard";
 
 const ProductList = (props) => {
-  const products = props.products;
+  const products = props.max ? [...props.products.slice(0, props.max)] : props.products;
   return (
     <ul
       className={
@@ -23,6 +23,7 @@ const ProductList = (props) => {
 
 ProductList.propTypes = {
   products: PropTypes.object,
+  max: PropTypes.number,
   dark: PropTypes.bool,
 };
 
