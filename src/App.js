@@ -34,3 +34,4 @@ function App() {
 }
 
 export default App;
+//Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
