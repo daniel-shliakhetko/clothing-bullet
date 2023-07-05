@@ -14,6 +14,7 @@ export const cartSlice = createSlice({
     },
     removeProductFromCart: (state, action) => {
       return state.filter((obj) => obj.id !== action.payload.id);
+      // eslint-disable-next-line
     },
   },
 });

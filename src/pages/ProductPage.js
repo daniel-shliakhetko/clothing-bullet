@@ -10,6 +10,7 @@ import {
   saveCartToLocalStorage,
 } from "../store/cartSlice";
 import { useCart } from "../contexts/ProductsContext";
+import { Helmet } from "react-helmet";
 
 export const ProductPage = () => {
   const { id } = useParams();
@@ -40,6 +41,14 @@ export const ProductPage = () => {
       <div className="w-full space-y-4 flex justify-center flex-col px-10">
         {product ? (
           <>
+            <Helmet>
+              <title>{product.title} - Clothing Bullet</title>
+              <meta name="description" content={product.description} />
+              <meta
+                name="keywords"
+                content={"Clothing, Bullet, Store, Style, " + product.title}
+              />
+            </Helmet>
             <span className="md:hidden text-3xl text-center font-semibold">
               {product.title}
             </span>
@@ -53,7 +62,9 @@ export const ProductPage = () => {
               <div className="rounded-lg h-[30rem] w-full bg-indigo-300 animate-pulse" />
             )}
           </>
-        ) : <div className="rounded-lg h-[30rem] w-full bg-indigo-300 animate-pulse" />}
+        ) : (
+          <div className="rounded-lg h-[30rem] w-full bg-indigo-300 animate-pulse" />
+        )}
       </div>
       <div className="w-full space-y-4">
         {product ? (
@@ -101,9 +112,7 @@ export const ProductPage = () => {
               className="Button ButtonDark h-12 px-8 bg-indigo-500 text-xl font-semibold text-indigo-100 rounded-lg hover:text-indigo-200"
               onClick={() => {}}
             >
-              <span>
-              Buy
-              </span>
+              <span>Buy</span>
             </button>
             {cart.some((product) => product.id === id) ? (
               <button
