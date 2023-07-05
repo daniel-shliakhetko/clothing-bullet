@@ -23,7 +23,7 @@ export const FrontPage = () => {
           colorClassName="text-indigo-100 text-center w-full"
           className="hover:text-indigo-200 pb-8"
         />
-        <ProductList products={products} max={8} dark={true} />
+        <ProductList products={products||[]} max={8} dark={true} />
       </section>
       <section className="w-full py-8">
         <HoverableHeading

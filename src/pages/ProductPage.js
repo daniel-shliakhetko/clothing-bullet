@@ -28,6 +28,7 @@ export const ProductPage = () => {
         currentProduct.id = id;
         setProduct(currentProduct);
         const image = await getImage(currentProduct.thumbnail);
+        console.log(image);
         setImageUrl(image);
       }
     },
@@ -97,14 +98,16 @@ export const ProductPage = () => {
         {product ? (
           <div className="flex space-x-2">
             <button
-              className="h-12 px-8 bg-indigo-500 text-xl font-semibold text-indigo-100 rounded-lg"
+              className="Button ButtonDark h-12 px-8 bg-indigo-500 text-xl font-semibold text-indigo-100 rounded-lg hover:text-indigo-200"
               onClick={() => {}}
             >
+              <span>
               Buy
+              </span>
             </button>
             {cart.some((product) => product.id === id) ? (
               <button
-                className="w-12 h-12 bg-red-600 rounded-lg text-indigo-100"
+                className="w-12 h-12 bg-red-600 rounded-lg text-indigo-100 duration-300 hover:scale-105 hover:text-red-200"
                 onClick={() => {
                   dispatch(removeProductFromCart(product));
                   saveCartToLocalStorage(
@@ -116,7 +119,7 @@ export const ProductPage = () => {
               </button>
             ) : (
               <button
-                className="w-12 h-12 bg-indigo-300 rounded-lg text-indigo-600"
+                className="w-12 h-12 bg-indigo-300 rounded-lg text-indigo-600 duration-300 hover:scale-105 hover:text-indigo-400"
                 onClick={() => {
                   dispatch(addProductToCart(product));
                   saveCartToLocalStorage([...cart, product]);

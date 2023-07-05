@@ -6,6 +6,6 @@ export const ProductListPage = () => {
   const products = useProducts();
 
   return (
-    <div><ProductList products={products}/></div>
+    <div><ProductList products={products||[]}/></div>
   )
 }

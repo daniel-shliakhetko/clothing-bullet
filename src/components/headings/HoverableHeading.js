@@ -5,7 +5,7 @@ import "../../styles/index.scss";
 const HoverableHeading = (props) => {
   return (
     <div
-      className="max-w-full flex md:justify-center text-[2em] font-bold cursor-default select-none"
+      className="w-full flex md:justify-center text-[2em] font-bold cursor-default select-none"
       title={props.title}
     >
       {

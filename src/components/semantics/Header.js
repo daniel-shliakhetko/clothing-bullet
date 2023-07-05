@@ -77,24 +77,24 @@ export const Header = () => {
       </nav>
       <div className="flex space-x-4 z-20">
         <button
-          className="w-10 h-10 mb-1 rounded flex justify-center items-center bg-indigo-100 duration-200 hover:scale-105 hover:bg-indiogo-200"
+          className="w-10 h-10 mb-1 rounded flex justify-center items-center bg-indigo-100 duration-200 text-indigo-500 hover:text-indigo-400"
           onClick={() => {
             navigate("/cart");
           }}
         >
           <FontAwesomeIcon
-            className="text-indigo-500 h-3/4 duration-200"
+            className="h-3/4"
             icon={faCartShopping}
           />
         </button>
         <button
-          className="w-8 h-8 md:hidden"
+          className="w-8 h-8 md:hidden duration-300 text-indigo-100 hover:text-indigo-300"
           onClick={() => {
             setIsMenuShown(!isMenuShown);
           }}
         >
           <FontAwesomeIcon
-            className="text-indigo-100 h-full"
+            className="h-full"
             icon={isMenuShown ? faBars : faXmark}
           />
         </button>

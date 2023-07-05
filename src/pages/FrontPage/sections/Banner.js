@@ -15,22 +15,22 @@ export const Banner = () => {
         setIsHovered(false);
       }}
       className={
-        "w-full h-fit pl-16 pr-16 flex flex-col lg:flex-row bg-indigo-400 rounded-lg duration-500" +
+        "w-full h-fit px-4 md:px-16 flex flex-col lg:flex-row bg-indigo-400 rounded-lg duration-500" +
         (isHovered ? "" : " opacity-95")
       }
     >
       <div className="w-full pt-44 pb-36 relative">
-        <div className="flex flex-col items-center h-40">
+        <div className="flex flex-col items-center min-h-40">
           <HoverableHeading
             title="The Hotest Prices"
             fontSize={"1.5em"}
-            colorClassName="text-indigo-100 text-center w-full"
+            colorClassName="text-indigo-100 w-full"
             className={"hover:text-indigo-200 duration-200"}
           />
           <HoverableHeading
             title="on the market"
             fontSize={"1.5em"}
-            colorClassName="text-indigo-100 text-center w-full"
+            colorClassName="text-indigo-100 w-full"
             className={"hover:text-indigo-200 pb-8 duration-200"}
           />
         </div>
@@ -46,10 +46,10 @@ export const Banner = () => {
             (isHovered ? " w-7 h-20" : " w-14 h-14")
           }
         />
-        <div className="w-full flex justify-center">
+        <div className="w-full flex md:justify-center">
           <Link to="/products">
-            <button className="h-12 px-8 bg-indigo-100 text-xl font-semibold text-indigo-500 rounded-full">
-              Check out
+            <button className="Button h-12 px-8 bg-indigo-100 text-xl font-semibold text-indigo-500 rounded-full hover:text-indigo-300">
+              <span>Check out</span>
             </button>
           </Link>
         </div>

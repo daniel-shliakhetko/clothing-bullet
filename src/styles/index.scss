@@ -40,7 +40,7 @@ body {
   width: 20px;
   height: 20px;
   background-color: rgb(99 102 241 / 0.5);
-  animation: animate 20s linear infinite;
+  animation: animate 10s linear infinite;
   bottom: -150px;
 
 }
@@ -73,7 +73,7 @@ body {
   width: 60px;
   height: 60px;
   animation-delay: 0s;
-  animation-duration: 18s;
+  animation-duration: 9s;
 }
 
 .circles li:nth-child(5) {
@@ -102,7 +102,7 @@ body {
   width: 25px;
   height: 25px;
   animation-delay: 15s;
-  animation-duration: 45s;
+  animation-duration: 22s;
 }
 
 .circles li:nth-child(9) {
@@ -110,7 +110,7 @@ body {
   width: 15px;
   height: 15px;
   animation-delay: 2s;
-  animation-duration: 35s;
+  animation-duration: 17s;
 }
 
 .circles li:nth-child(10) {
@@ -118,10 +118,81 @@ body {
   width: 150px;
   height: 150px;
   animation-delay: 0s;
-  animation-duration: 11s;
+  animation-duration: 6s;
 }
 
+$color: rgb(224 231 255);
+$bg: rgb(129 140 248);
 
+.Button {
+  height: 3rem;
+  width: 10rem;
+  display: inline-block;
+  text-align: center;
+  background: $color;
+  color: $bg;
+  border-radius: 1em;
+  position: relative;
+  text-decoration: none;
+  z-index: 40;
+  transition: 0.3s;
+
+  &Dark {
+    color: $color;
+    background-color: $bg;
+    &:after, &:before{
+      background: $bg!important;
+    }
+  }
+
+  &>* {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 30;
+  }
+
+  &:hover {
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transform: scale(1.05);
+  }
+}
+
+.Button:before,
+.Button:after {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  content: "";
+  background: $color;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  transform: scale(0);
+  z-index: 20;
+}
+
+.Button:hover:before,
+.Button:hover:after {
+  transform: scale(1);
+}
+
+.Button:before {
+  top: -30%;
+  left: 0%;
+}
+
+.Button:after {
+  bottom: -30%;
+  right: 0%;
+}
+
+.Button:hover:before,
+.Button:hover:after {
+  transform: none;
+}
 
 @keyframes animate {
 
@@ -130,8 +201,9 @@ body {
     opacity: 1;
     border-radius: 0;
   }
-  40%{
-    opacity:0.5;
+
+  40% {
+    opacity: 0.5;
   }
 
   65% {
