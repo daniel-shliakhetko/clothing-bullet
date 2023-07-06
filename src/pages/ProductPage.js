@@ -22,21 +22,23 @@ export const ProductPage = () => {
   const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(
-    () => async () => {
-      const currentProduct = await getProduct(id);
-      if (!currentProduct) setProduct("Redirect");
-      else {
-        currentProduct.id = id;
-        setProduct(currentProduct);
-        const image = await getImage(currentProduct.thumbnail);
-        console.log(image);
-        setImageUrl(image);
-      }
+    () => {
+      getProduct(id).then((currentProduct)=>{
+        if (!currentProduct) setProduct("Redirect");
+        else {
+          currentProduct.id = id;
+          setProduct(currentProduct);
+          getImage(currentProduct.thumbnail).then((image)=>{
+            setImageUrl(image);
+          });
+        }
+      }).catch(err=>{setProduct("Redirect")});
+      
     },
     [id]
   );
   return (
-    <div className="w-full flex flex-col sm:flex-row p-8 md:p-16 lg:p-24 xl:p-32 space-x-8">
+    <div className="w-full flex flex-col sm:flex-row p-4 md:p-16 lg:p-24 xl:p-32 md:space-x-8">
       {product === "Redirect" && <Navigate to="/products" />}
       <div className="w-full space-y-4 flex justify-center flex-col px-10">
         {product ? (
@@ -49,7 +51,7 @@ export const ProductPage = () => {
                 content={"Clothing, Bullet, Store, Style, " + product.title}
               />
             </Helmet>
-            <span className="md:hidden text-3xl text-center font-semibold">
+            <span className="sm:hidden text-3xl text-center font-semibold">
               {product.title}
             </span>
             {imageUrl ? (
@@ -66,9 +68,9 @@ export const ProductPage = () => {
           <div className="rounded-lg h-[30rem] w-full bg-indigo-300 animate-pulse" />
         )}
       </div>
-      <div className="w-full space-y-4">
+      <div className="w-full space-y-4 flex flex-col-reverse sm:flex-col">
         {product ? (
-          <span className="hidden md:block text-3xl font-semibold">
+          <span className="hidden sm:block text-3xl font-semibold">
             {product.title}
           </span>
         ) : (
@@ -83,7 +85,8 @@ export const ProductPage = () => {
             <div className="rounded-lg h-4 w-5/6 bg-indigo-300 animate-pulse" />
           </>
         )}
-        <div className="flex space-x-2">
+        <div className="space-y-2">
+        <div className="flex space-x-2 justify-center sm:justify-start">
           {product ? (
             !product.discount || product.discount === 0 ? (
               <span className="Price text-center font-bold text-xl text-slate-600">
@@ -107,7 +110,7 @@ export const ProductPage = () => {
           )}
         </div>
         {product ? (
-          <div className="flex space-x-2">
+          <div className="flex space-x-2 justify-center sm:justify-start">
             <button
               className="Button ButtonDark h-12 px-8 bg-indigo-500 text-xl font-semibold text-indigo-100 rounded-lg hover:text-indigo-200"
               onClick={() => {}}
@@ -141,7 +144,7 @@ export const ProductPage = () => {
         ) : (
           <div className="rounded-lg h-16 w-32 bg-indigo-300 animate-pulse" />
         )}
-      </div>
+      </div></div>
     </div>
   );
 };

@@ -17,7 +17,7 @@ export const CartPage = () => {
       className="flex items-center"
     >
       <Helmet>
-        <title>Cart -Clothing Bullet</title>
+        <title>Cart - Clothing Bullet</title>
       </Helmet>
       {cart && cart.length !== 0 ? (
         <ProductList products={cart || []} />

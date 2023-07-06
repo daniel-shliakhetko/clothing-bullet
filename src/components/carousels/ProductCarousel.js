@@ -44,8 +44,8 @@ const ProductCarousel = (props) => {
           },
         }}
       >
-        {props.products.map((product) => (
-          <SwiperSlide>
+        {props.products.map((product, i) => (
+          <SwiperSlide key={i}>
             <div className="my-6 flex justify-center">
               <ProductCard product={product} />
             </div>
@@ -63,7 +63,7 @@ const ProductCarousel = (props) => {
 };
 
 ProductCarousel.propTypes = {
-  products: PropTypes.object,
+  products: PropTypes.array,
 };
 
 export default ProductCarousel;

@@ -23,7 +23,7 @@ export const ProductsContext = (props) => {
   }, [dispatch]);
 
   useEffect(
-    () => async () => {
+    () => {
       getCartFromLocalStorage()
         .then((res) => {
           dispatch(setCart(res));

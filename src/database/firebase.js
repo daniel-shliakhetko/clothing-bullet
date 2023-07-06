@@ -53,7 +53,6 @@ export const getImage = async (storageLocation) => {
 
   return getDownloadURL(gsRef)
     .then((url) => {
-      console.log(url);
       return url;
     })
     .catch((error) => {

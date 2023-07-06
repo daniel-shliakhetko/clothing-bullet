@@ -22,7 +22,7 @@ const ProductList = (props) => {
 };
 
 ProductList.propTypes = {
-  products: PropTypes.object,
+  products: PropTypes.array,
   max: PropTypes.number,
   dark: PropTypes.bool,
 };

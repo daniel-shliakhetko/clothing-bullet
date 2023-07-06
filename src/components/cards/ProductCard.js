@@ -9,12 +9,13 @@ const ProductCard = (props) => {
 
   const [imageUrl, setImageUrl] = useState(null);
   useEffect(
-    () => async () => {
-      if (!product) return;
-      const image = await getImage(thumbnail);
-      setImageUrl(image);
-    },
-    [product, thumbnail]
+    () => {
+      if (!product || imageUrl) return;
+      getImage(thumbnail).then((image)=>{
+        console.log(image);
+        setImageUrl(image);
+      });
+    }
   );
 
   return product ? (
@@ -25,13 +26,14 @@ const ProductCard = (props) => {
           (props.dark ? " bg-indigo-100" : " bg-indigo-400")
         }
       >
-        {imageUrl ? (
-          <img
-            className="h-56 object-contain rounded-md"
-            src={imageUrl}
-            alt={title}
-          />
-        ) : (
+        <img
+          className={
+            "h-56 object-contain rounded-md " + (!imageUrl ? "hidden" : "")
+          }
+          src={imageUrl}
+          alt={title}
+        />
+        {!imageUrl && (
           <div
             className={
               "h-56 w-44 rounded-md animate-pulse " +
