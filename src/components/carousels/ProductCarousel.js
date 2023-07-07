@@ -44,13 +44,21 @@ const ProductCarousel = (props) => {
           },
         }}
       >
-        {props.products.map((product, i) => (
-          <SwiperSlide key={i}>
-            <div className="my-6 flex justify-center">
-              <ProductCard product={product} />
-            </div>
-          </SwiperSlide>
-        ))}
+        {props.products && props.products.length > 0
+          ? props.products.map((product, i) => (
+              <SwiperSlide key={i}>
+                <div className="my-6 flex justify-center">
+                  <ProductCard product={product} />
+                </div>
+              </SwiperSlide>
+            ))
+          : [null, null, null, null].map((product, i) => (
+              <SwiperSlide key={i}>
+                <div className="my-6 flex justify-center">
+                  <ProductCard product={product} />
+                </div>
+              </SwiperSlide>
+            ))}
       </Swiper>
       <button onClick={() => sliderRef.current?.slideNext()}>
         <FontAwesomeIcon

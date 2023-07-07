@@ -5,13 +5,12 @@ import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
   const product = props.product;
-  const { id, title, price, discount, stock, thumbnail } = product;
 
   const [imageUrl, setImageUrl] = useState(null);
   useEffect(
     () => {
       if (!product || imageUrl) return;
-      getImage(thumbnail).then((image)=>{
+      getImage(props.product.thumbnail).then((image)=>{
         console.log(image);
         setImageUrl(image);
       });
@@ -19,7 +18,7 @@ const ProductCard = (props) => {
   );
 
   return product ? (
-    <Link to={"/products/" + id}>
+    <Link to={"/products/" + props.product.id}>
       <div
         className={
           "w-72 h-96 flex flex-col justify-center items-center p-8 rounded-lg font-medium space-y-2 duration-300 hover:scale-105 ease-[cubic-bezier(0.000, 1.125, 0.530, -0.600)]" +
@@ -31,7 +30,7 @@ const ProductCard = (props) => {
             "h-56 object-contain rounded-md " + (!imageUrl ? "hidden" : "")
           }
           src={imageUrl}
-          alt={title}
+          alt={props.product.title}
         />
         {!imageUrl && (
           <div
@@ -47,16 +46,16 @@ const ProductCard = (props) => {
             (!props.dark ? " text-indigo-100" : "")
           }
         >
-          {title}
+          {props.product.title}
         </span>
-        {discount === 0 ? (
+        {props.product.discount === 0 ? (
           <span
             className={
               "Price text-center font-bold" +
               (!props.dark ? " text-indigo-50" : " text-slate-600")
             }
           >
-            {price}$
+            {props.product.price}$
           </span>
         ) : (
           <div className="flex justify-center space-x-2">
@@ -68,7 +67,7 @@ const ProductCard = (props) => {
                   : " text-slate-500 decoration-slate-500")
               }
             >
-              {price}$
+              {props.product.price}$
             </span>
             <span
               className={
@@ -76,11 +75,11 @@ const ProductCard = (props) => {
                 (!props.dark ? " text-red-200" : " text-red-600")
               }
             >
-              {Math.round((price - price * discount) * 100) / 100}$
+              {Math.round((props.product.price - props.product.price * props.product.discount) * 100) / 100}$
             </span>
           </div>
         )}
-        {stock > 0 ? (
+        {props.product.stock > 0 ? (
           <span
             className={
               "Stock text-center font-normal" +
